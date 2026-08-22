@@ -401,6 +401,9 @@ AiPlayerbot.ShootDistance = 5.0
 AiPlayerbot.HealDistance = 38.5
 AiPlayerbot.LootDistance = 15.0
 AiPlayerbot.FleeDistance = 5.0
+# Maximum distance melee bots may chase a fleeing or assistance-seeking target in non-raid dungeons.
+# 0.0 disables the limit and preserves legacy behavior. Recommended enabled value: 10.0.
+AiPlayerbot.FleeingTargetMaxChaseDistance = 0.0
 AiPlayerbot.AggroDistance = 22
 AiPlayerbot.TooCloseDistance = 5.0
 AiPlayerbot.MeleeDistance = 0.75
