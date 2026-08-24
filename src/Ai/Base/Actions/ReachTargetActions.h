@@ -9,6 +9,7 @@
 
 #include "GenericSpellActions.h"
 #include "MovementActions.h"
+#include "ObjectGuid.h"
 
 class PlayerbotAI;
 

@@ -16,6 +16,8 @@
 
 namespace
 {
+constexpr float FLEEING_ANCHOR_RETURN_TOLERANCE = 1.5f;
+
 bool IsFleeingOrAssisting(Creature const* creature)
 {
     if (creature->HasUnitState(UNIT_STATE_FLEEING))
@@ -91,8 +93,7 @@ bool ReachMeleeAction::Execute(Event event)
     }
 
     if (!fleeingLeashExceeded &&
-        creature->GetExactDist2d(fleeingAnchorX, fleeingAnchorY) >
-            sPlayerbotAIConfig.fleeingTargetMaxChaseDistance)
+        creature->GetExactDist2d(fleeingAnchorX, fleeingAnchorY) > sPlayerbotAIConfig.fleeingTargetMaxChaseDistance)
     {
         fleeingLeashExceeded = true;
         AI_VALUE(LastMovement&, "last movement").clear();
@@ -103,9 +104,8 @@ bool ReachMeleeAction::Execute(Event event)
     if (!fleeingLeashExceeded)
         return ReachTargetAction::Execute(event);
 
-    if (bot->GetExactDist2d(fleeingAnchorX, fleeingAnchorY) > sPlayerbotAIConfig.followDistance)
+    if (bot->GetExactDist2d(fleeingAnchorX, fleeingAnchorY) > FLEEING_ANCHOR_RETURN_TOLERANCE)
     {
-        // Normal combat and dungeon navigation can immediately override this return movement.
         MoveTo(fleeingAnchorMapId, fleeingAnchorX, fleeingAnchorY, fleeingAnchorZ, false, false, false, false,
                MovementPriority::MOVEMENT_IDLE, true);
     }
@@ -117,6 +117,9 @@ void ReachMeleeAction::ResetFleeingTargetChase()
 {
     fleeingTargetGuid = ObjectGuid::Empty;
     fleeingAnchorMapId = 0;
+    fleeingAnchorX = 0.0f;
+    fleeingAnchorY = 0.0f;
+    fleeingAnchorZ = 0.0f;
     fleeingAnchorSet = false;
     fleeingLeashExceeded = false;
 }

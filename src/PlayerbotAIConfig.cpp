@@ -95,8 +95,7 @@ bool PlayerbotAIConfig::Initialize()
     healDistance = sConfigMgr->GetOption<float>("AiPlayerbot.HealDistance", 38.5f);
     lootDistance = sConfigMgr->GetOption<float>("AiPlayerbot.LootDistance", 15.0f);
     fleeDistance = sConfigMgr->GetOption<float>("AiPlayerbot.FleeDistance", 5.0f);
-    fleeingTargetMaxChaseDistance =
-        sConfigMgr->GetOption<float>("AiPlayerbot.FleeingTargetMaxChaseDistance", 0.0f);
+    fleeingTargetMaxChaseDistance = sConfigMgr->GetOption<float>("AiPlayerbot.FleeingTargetMaxChaseDistance", 0.0f);
     aggroDistance = sConfigMgr->GetOption<float>("AiPlayerbot.AggroDistance", 22.0f);
     tooCloseDistance = sConfigMgr->GetOption<float>("AiPlayerbot.TooCloseDistance", 5.0f);
     meleeDistance = sConfigMgr->GetOption<float>("AiPlayerbot.MeleeDistance", 0.75f);
